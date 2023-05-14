@@ -16,7 +16,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
 
     return (
         <div className="container">
-            <h2 className="text-2xl font-bold mb-4">Step 1</h2>
+            <h2 className="text-2xl font-bold mb-4">Enter your first name & Last Name</h2>
             <input
                 type="text"
                 value={firstName}
