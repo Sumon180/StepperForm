@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .container {
+    @apply mx-auto p-4 bg-white w-96 drop-shadow-lg;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  /* ... */
+}
