@@ -7,7 +7,7 @@ interface Step2Props {
     onPrevious: () => void;
 }
 
-const Step2: React.FC<Step2Props> = ({ firstName, onNext, onPrevious }) => {
+const Step2: React.FC<Step2Props> = ({ firstName, lastName, onNext, onPrevious }) => {
     const [email, setEmail] = useState('');
 
     const handleNext = () => {
@@ -19,7 +19,7 @@ const Step2: React.FC<Step2Props> = ({ firstName, onNext, onPrevious }) => {
     return (
         <div className="container mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4">Enter your email</h2>
-            <p className="mb-4">Hello, {firstName} ! Please enter your email address:</p>
+            <p className="mb-4">Hello, {firstName} {lastName}! Please enter your email address:</p>
             <input
                 type="email"
                 value={email}

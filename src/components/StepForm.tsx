@@ -27,6 +27,7 @@ const StepForm = (): JSX.Element => {
 
     const handleSubmit = (): void => {
         console.log('Form submitted!');
+        console.log({ firstName, lastName, email });
     };
 
     let currentStepComponent: JSX.Element | null;
