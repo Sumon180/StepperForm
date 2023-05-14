@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import ProgressIndicator from './ProgressIndicator';
 
-const StepForm = (): JSX.Element => {
+interface StepFormProps {
+    email: string;
+}
+
+const StepForm: React.FC<StepFormProps> = () => {
     const [step, setStep] = useState<number>(1);
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
@@ -30,31 +34,24 @@ const StepForm = (): JSX.Element => {
         console.log({ firstName, lastName, email });
     };
 
-    let currentStepComponent: JSX.Element | null;
+    const steps = [
+        <Step1 onNext={handleNext} />,
+        <Step2
+            firstName={firstName}
+            lastName={lastName}
+            onNext={handleNext}
+            onPrevious={handlePrevious}
+        />,
+        <Step3
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            onPrevious={handlePrevious}
+            onSubmit={handleSubmit}
+        />,
+    ];
 
-    switch (step) {
-        case 1:
-            currentStepComponent = <Step1 onNext={handleNext} />;
-            break;
-        case 2:
-            currentStepComponent = (
-                <Step2 firstName={firstName} lastName={lastName} onNext={handleNext} onPrevious={handlePrevious} />
-            );
-            break;
-        case 3:
-            currentStepComponent = (
-                <Step3
-                    firstName={firstName}
-                    lastName={lastName}
-                    email={email}
-                    onPrevious={handlePrevious}
-                    onSubmit={handleSubmit}
-                />
-            );
-            break;
-        default:
-            currentStepComponent = null;
-    }
+    const currentStepComponent = steps[step - 1] || null;
 
     return (
         <>
